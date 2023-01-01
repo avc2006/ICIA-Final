@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OrderMapper">
+
+	<!-- 주문 추가 -->
+	<insert id="insert">
+		insert into tbl_order(p_code, u_code, token)
+		values(#{p_code}, #{u_code}, ( select token from tbl_user where u_code = #{u_code} ))
+	</insert>
+	
+	<!-- 특정 주문 토큰 목록 -->
+	<select id="getTokenList" resultType="String">
+		select token
+		from tbl_order
+		where p_code = #{p_code}
+	</select>
+	 
+	<!-- order status 변경 -->
+	<update id="update">
+		update tbl_order
+		set o_status = #{o_status}
+		where p_code = #{p_code} and u_code = #{u_code}
+	</update>
+	
+	<!-- p_code 획득 -->
+	<select id="get_p_code" resultType="int">
+		select p_code from tbl_order where u_code=#{u_code}
+	</select>
+	
+</mapper>

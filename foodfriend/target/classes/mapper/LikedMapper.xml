@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.LikedMapper">
+
+	<!-- 즐겨찾기 등록 -->
+	<insert id="insert">
+		insert into tbl_liked(u_code, s_code)
+		values(#{u_code}, #{s_code})
+	</insert>
+	
+	<!-- 즐겨찾기 가게 목록 -->
+	<select id="list" resultType="com.example.domain.StoreVO">
+		select *
+		from tbl_store
+		where s_code = any(
+			select s_code
+			from tbl_liked
+			where u_code = #{u_code})
+	</select>
+	
+	<!-- 특정 가게 즐겨찾기한 유저 목록 -->
+	<select id="read" resultType="com.example.domain.LikedVO">
+		select *
+		from tbl_liked
+		where s_code = #{s_code}
+	</select>
+	
+	<!-- 즐겨찾기 삭제  -->
+	<delete id="delete">
+		delete from tbl_liked
+		where u_code = #{u_code} and s_code = #{s_code}
+	</delete>
+	
+	<!-- 특정가게의 즐겨찾기 전부 삭제 -->
+	<delete id="s_delete">
+		delete from tbl_liked
+		where s_code = #{s_code}
+	</delete>
+	
+	<!-- 회원탈퇴 시 해당 유저의 즐겨찾기도 삭제 -->
+	<delete id="u_delete">
+		delete from tbl_liked
+		where u_code = (
+			select d_code
+			from tbl_user_delete
+			where datediff(now(), (tbl_user_delete.d_date)) >= 14
+		)
+	</delete>
+	
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/search_item"
+    android:padding="10sp"
+    android:layout_margin="10dp"
+    android:background="@drawable/backround">
+
+    <ImageView
+        android:id="@+id/search_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/round"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/search_name"
+        android:layout_toRightOf="@id/search_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가게명"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/search_location"
+        android:layout_toRightOf="@id/search_photo"
+        android:layout_below="@id/search_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:text="위치" />
+
+    <TextView
+        android:id="@+id/search_menu"
+        android:layout_toRightOf="@id/search_photo"
+        android:layout_below="@id/search_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:text="메뉴" />
+
+    <TextView
+        android:id="@+id/w_count"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/round"
+        android:backgroundTint="#F76A14"
+        android:gravity="center"
+        android:text="대기중"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

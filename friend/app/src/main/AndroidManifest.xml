@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.icia.friend">
+    <!-- 인터넷 사용 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 연결 확인 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".login.KakaoAPI"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/logo"
+        android:label="밥친구"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Friend"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".LikedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".post.PostReadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".post.PostInsertActivity"
+            android:exported="false" />
+        <activity
+            android:name=".post.PostListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.KakaoRegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.MenuReadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StoreReadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.SearchListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StoreListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.CategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReportActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IndexActivity"
+            android:exported="false"
+            android:launchMode="singleTop"/>
+        <activity
+            android:name=".review.ReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".chat.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".chat.ReadActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".PermissionActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 카카오 로그인 -->
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao430aa7d07409704345a7ee1c6c4570c0" />
+            </intent-filter>
+        </activity>
+        <!-- 결제 -->
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".OrderActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="iamportsdkapp" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- 구글맵 -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyByYmGvUo9t1EGezWTWiJRDd7pAPj5LRDI" /> <!-- FCM Push Notification -->
+        <!-- FirebaseMessagingService 확장 서비스
+             백그라운드에서 앱에 대한 알림 수신
+        -->
+        <service
+            android:name=".api.FCMMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+            <!-- 알림 아이콘 설정 -->
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_icon"
+                android:resource="@drawable/ic_notification_logo" />
+
+            <!-- 알림 채널 설정 -->
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_channel_id"
+                android:value="@string/default_notification_channel_id" />
+        </service>
+    </application>
+
+</manifest>

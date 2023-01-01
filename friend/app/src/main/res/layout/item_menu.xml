@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/m_item"
+    android:padding="10sp"
+    android:layout_margin="10dp"
+    android:background="@drawable/backround">
+    <ImageView
+        android:id="@+id/m_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        />
+    <TextView
+        android:id="@+id/m_name"
+        android:layout_toRightOf="@id/m_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="메뉴명"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/m_price"
+        android:layout_toRightOf="@id/m_photo"
+        android:layout_below="@id/m_name"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가격" />
+
+</RelativeLayout>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/slist"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:iconifiedByDefault="false"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/c_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="#F76A14"
+            android:text="검색" />
+
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/C_han"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a1"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="한식"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/C_il"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a2"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="일식"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/C_joong"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a3"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="중식"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/C_yang"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a4"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="양식"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/C_asian"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a5"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="아시안"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/C_boon"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a6"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="분식"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/C_fast"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a7"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="패스트푸드"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/C_dessert"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a8"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="디저트"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/C_etc"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:drawableTop="@drawable/a9"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="기타"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/store_list"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/bigbackground"
+        android:elevation="10dp"
+        android:padding="10dp" />
+
+</LinearLayout>

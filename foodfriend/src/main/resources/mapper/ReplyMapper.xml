@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ReplyMapper">
+
+	<insert id="insert">
+		insert into tbl_reply(r_code, s_code, u_code, re_content)
+		values(#{r_code}, #{s_code}, #{u_code}, #{re_content})
+	</insert>
+	
+	<select id="uread" resultType="com.example.domain.ReplyVO">
+		select v.*, p.*
+		from tbl_review v, tbl_reply p 
+		where v.r_code = p.r_code and v.r_code = #{r_code}
+	</select>
+	
+</mapper>

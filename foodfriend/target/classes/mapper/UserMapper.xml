@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.UserMapper">
+
+	<!-- 기존 유저 코드를 받아서 새로운 유저코드 생성 -->
+	<select id="newCode" resultType="String">
+		select concat('u', max((substr(u_code, 2)) + 1)) as new_code
+		from tbl_user
+	</select>
+	
+	<!-- 카카오 회원가입 사용자 코드 부여 -->
+	<select id="newKakaoCode" resultType="String">
+		select concat('k', #{u_code}) as new_kakao_code
+	</select>
+
+	<!-- 유저 등록 -->
+	<insert id="insert">
+		insert into tbl_user(u_code, u_name, u_address, u_id, u_pass, birthday, gender,age,token)
+		values(#{u_code}, #{u_name}, #{u_address}, #{u_id}, #{u_pass}, #{birthday}, #{gender},#{age},#{token})
+	</insert>
+
+	<!-- 특정 column의 특정 query로 유저를 검색해서 목록을 불러온다.(웹) -->
+	<!-- 컬럼 찾을 때는 #이 아닌 $ 사용 -->
+	<select id="list" resultType="com.example.domain.UserVO">
+		select *
+		from tbl_user
+		where ${column} like concat('%', #{query}, '%')
+		order by u_date asc
+		limit #{start}, #{num}
+ 	</select>
+ 	
+ 	<!-- 특정 유저의 정보 읽기 - 로그인 시 사용 (앱)-->
+ 	<select id="read" resultType="com.example.domain.UserVO">
+		select *
+		from tbl_user
+		where u_code = #{u_code}
+	</select>
+	
+	<!-- 로그인을 위한 유저 정보 가져오기 (웹) -->
+	<select id="loginRead" resultType="com.example.domain.UserVO">
+		select *
+		from tbl_user
+		where u_id = #{u_id}
+	</select>
+ 	
+ 	<!-- 특정 column의 특정 query의  데이터를 가진 유저의 수 -->
+ 	<select id="total" resultType="int">
+ 		select count(*)
+		from tbl_user
+		where ${column} like concat('%', #{query}, '%')
+ 	</select>
+ 	
+ 	<!-- 유저 정보 수정(앱) -->
+	<update id="update">
+		update tbl_user
+		set u_address = #{u_address}, u_pass = #{u_pass}, u_photo = #{u_photo}
+		where u_code = #{u_code}
+	</update>
+ 	
+ 	<!-- 유저 삭제를 위한 status 변경 -->
+ 	<update id="updateStatus">
+ 		update tbl_user
+ 		set u_status = not(u_status)
+ 		where u_code = #{u_code}
+ 	</update>
+ 	
+ 	<!-- 유저 삭제 테이블에 삭제 할 유저 등록 -->
+ 	<insert id="delUser">
+ 		insert into tbl_user_delete(d_code)
+ 		values(#{u_code})
+ 	</insert>
+ 	
+ 	<!-- 유저 삭제 테이블에서 특정 유저 복원 -->
+ 	<delete id="reUser">
+ 		delete from tbl_user_delete
+ 		where d_code = #{u_code}
+ 	</delete>
+ 	
+ 	<!-- 유저 삭제 테이블에서 14일 이상 지난 유저 삭제 -->
+ 	<delete id="del_user">
+		delete from tbl_user, tbl_user_delete
+		using tbl_user
+		left join tbl_user_delete
+		on tbl_user.u_code = tbl_user_delete.d_code
+		where (
+			select datediff(now(), tbl_user_delete.d_date) >= 14
+		)
+	</delete>
+	
+ 	 <select id="getAge" resultType="int">
+ 	 	select timestampdiff(year, #{birthday}, now())
+ 	 </select>
+</mapper>

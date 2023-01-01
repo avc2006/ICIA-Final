@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.MenuMapper">
+
+	<!-- 기존의 메뉴코드를 받아 새로운 메뉴 코드 생성 -->
+	<select id="newCode" resultType="int">
+		select ifnull(max(m_code) + 1, 1) as new_code
+		from tbl_menu
+		where s_code = #{s_code}
+	</select>
+	
+	<!-- 새로운 메뉴 등록 -->
+	<insert id="insert">
+		insert into tbl_menu(m_code, s_code, m_name, m_price, m_photo)
+		values(#{m_code}, #{s_code}, #{m_name}, #{m_price}, #{m_photo})
+	</insert>
+	
+	<!-- 특정 가게의 메뉴 목록 받기 -->
+	<select id="list" resultType="com.example.domain.MenuVO">
+		select *
+		from tbl_menu
+		where s_code = #{s_code}
+	</select>
+
+	<!-- 특정 가게의 메뉴에 대한 정보  -->
+	<select id="read" resultType="com.example.domain.MenuVO">
+		select *
+		from tbl_menu
+		where s_code = #{s_code} and m_code = #{m_code}
+	</select>
+	
+	<!-- 특정 가게의 특정 메뉴 수정 -->
+	<update id="update">
+		update tbl_menu
+		set m_name = #{m_name}, m_price = #{m_price}, m_photo = #{m_photo}
+		where s_code = #{s_code} and m_code = #{m_code}
+	</update>
+	
+	<!-- 가게 코드와 메뉴 이름을 받아 특정 가게의 특정 메뉴 삭제 -->
+	<delete id="delete">
+		delete from tbl_menu
+		where s_code = #{s_code} and m_name = #{m_name}
+	</delete>
+	
+	<!--특정 가게 삭제 시 특정 가게의 모든 메뉴 삭제 -->
+	<delete id="allDelete">
+		delete from tbl_menu
+		where s_code = #{s_code}
+	</delete>
+	
+</mapper>

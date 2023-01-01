@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/o_item"
+    android:padding="10sp"
+    android:background="@drawable/backround"
+    android:layout_margin="10dp">
+    <TextView
+        android:id="@+id/o_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="메뉴이름"/>
+    <ImageView
+        android:id="@+id/o_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/o_name"
+        />
+
+    <TextView
+        android:id="@+id/order_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/o_photo"
+        android:textColor="@color/black"
+        android:text="가격"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/o_name"/>
+
+    <LinearLayout
+        android:layout_toRightOf="@id/o_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/order_price"
+        >
+        <TextView
+            android:id="@+id/o_amount"
+            android:layout_toRightOf="@id/c_photo"
+            android:layout_below="@id/c_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginRight="10dp"
+            android:text="수량" />
+    </LinearLayout>
+
+</RelativeLayout>

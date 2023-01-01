@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.PostMapper">
+
+	<!-- 새로 작성될 p_code -->
+	<select id="get_p_code" resultType="int">
+		select max(p_code)
+		from tbl_post
+	</select>
+
+	<!--게시글의 c_code 가져오기 -->
+	<select id="get_c_code" resultType="int">
+		select c_code
+		from tbl_post
+		where p_code = #{p_code}
+	</select>
+
+	<!-- 게시글 작성 -->
+	<insert id="insert">
+		insert into tbl_post( c_code, s_code, u_code, p_title, p_content )
+		values( (select ifnull(max(c_code), 1) from tbl_condition), #{s_code}, #{u_code}, #{p_title}, #{p_content} )
+	</insert>
+
+	<!-- 특정 가계의 게시글 리스트 -->
+	<select id="list" resultType="com.example.domain.PostVO">
+		select p.*, c.headcount, c.gender,
+		c.age
+		from tbl_post p, tbl_condition c
+		where c.c_code = p.c_code and
+		s_code = #{s_code}
+	</select>
+
+	<!-- 게시글 정보 -->
+	<select id="read" resultType="com.example.domain.PostVO">
+		select p.*, c.age, c.gender, c.headcount
+		from tbl_post p, tbl_condition c
+		where p_code = #{p_code} and p.c_code = c.c_code
+	</select>
+	
+	<!-- 게시글 참가 인원수 증가 -->
+	<update id="updateHeadcount">
+		update tbl_post
+		set p_headcount = p_headcount + 1
+		where p_code = #{p_code}
+	</update>
+
+	<!--특정 게시글 삭제 -->
+	<delete id="delete">
+		delete from tbl_post
+		where p_code = #{p_code}
+	</delete>
+	
+	<!-- order에서 사용하기 위한 read -->
+	<select id="order_read" resultType="com.example.domain.PostVO">
+		select * from tbl_post where p_code=#{p_code}
+	</select>
+
+</mapper>

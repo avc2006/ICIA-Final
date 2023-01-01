@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ConditionMapper">
+
+	<!-- 조건 테이블에 데이터 입력 -->
+	<insert id="insert">
+		insert into tbl_condition(headcount, gender, age)
+		values(#{headcount}, #{gender}, #{age})
+	</insert>
+
+	<!-- 최근에 작성된 조건 테이블의 c_code 얻기 -->
+<!-- 	<select id="get_c_code" resultType="int"> -->
+<!-- 		select max(c_code) -->
+<!-- 		from tbl_condition -->
+<!-- 	</select> -->
+
+	<!-- 특정 c_code의 조건 삭제 -->
+	<delete id="delete">
+		delete from tbl_condition
+		where c_code = #{c_code}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CartMapper">
+
+	<!-- 장바구니 추가 -->
+	<insert id="insert">
+	 	insert into tbl_cart(u_code, s_code, m_name, amount, m_photo, m_price)
+	 	values(#{u_code}, #{s_code}, #{m_name}, #{amount}, #{m_photo}, #{m_price})
+	 </insert>
+	 
+	 <!-- 유저 개인 장바구니 목록 -->
+	 <select id="list" resultType="com.example.domain.CartVO">
+	 	select *
+	 	from tbl_cart
+	 	where u_code = #{u_code}
+	 </select>
+	 
+	 <select id="orderlist" resultType="com.example.domain.CartVO">
+	 	SELECT p.p_code, c.* 
+	 	FROM tbl_post p, tbl_order o, tbl_cart c 
+	 	WHERE p.p_code = #{p_code} AND p.p_code = o.p_code AND o.u_code = c.u_code; 
+	 </select>
+	 
+	 <!-- 유저 개인 장바구니에 같은 메뉴 있는지 확인 -->
+	 <select id="read" resultType="com.example.domain.CartVO">
+	 	select *
+	 	from tbl_cart
+	 	where u_code = #{u_code} and m_name = #{m_name}
+	 </select>
+	 
+	 <!-- 같은 매장의 메뉴만 담을 수 있도록 장바구니에 담겨있는 s_code 받음 -->
+	 <select id="getS_code" resultType="String">
+	 	select s_code
+	 	from tbl_cart
+	 	where u_code = #{u_code}
+	 	group by s_code
+	 </select>
+	 
+	 <!-- 새로 담을 메뉴가 장바구니에 있으면 같은 메뉴 수량 수정 -->
+	 <update id="update">
+	 	update tbl_cart
+	 	set amount = #{amount}
+	 	where u_code = #{u_code} and m_name = #{m_name}
+	 </update>
+	 
+	 <!-- 유저, 메뉴이름 일치하면 삭제 -->
+	 <delete id="delete">
+	 	delete from tbl_cart
+	 	where u_code = #{u_code} and m_name = #{m_name}
+	 </delete>
+	 
+	 <!-- 유저 장바구니 비우기 -->
+	 <delete id="allDelete">
+	 	delete from tbl_cart
+	 	where u_code = #{u_code}
+	 </delete>
+	 
+</mapper>

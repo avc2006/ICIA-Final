@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".store.MenuReadActivity"
+    android:orientation="vertical"
+    android:id="@+id/menu_read"
+    >
+    <ImageView
+        android:id="@+id/menu_read_photo"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:layout_height="200dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+    <TextView
+        android:id="@+id/menu_read_name"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/backround"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:text="메뉴명"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp">
+        <TextView
+            android:gravity=""
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="가격"
+            />
+        <TextView
+            android:id="@+id/menu_read_price"
+            android:gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="가격"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center|bottom">
+        <Button
+            android:id="@+id/decrease"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/remove"/>
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:text="1"/>
+
+        <Button
+            android:id="@+id/increase"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/add_24"/>
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_marginTop="0dp"
+    android:gravity="center">
+    <Button
+        android:id="@+id/read_cartButton"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:text="장바구니 담기"
+        android:layout_marginRight="10dp"/>
+    <Button
+        android:id="@+id/view_cartButton"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:text="장바구니 보기"/>
+</LinearLayout>
+</LinearLayout>
